@@ -1,0 +1,21 @@
+{
+  "name": "to-do-list-api",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/http/server.ts",
+    "build": "bun build src/http/server.ts --target bun --outdir ./dist",
+    "start": "NODE_ENV=production bun dist/index.js",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "elysia": "^1.2.10"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

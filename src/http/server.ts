@@ -7,7 +7,18 @@ import { task } from "../routes/task";
 
 const server = new Elysia()
   .use(cors())
-  .use(swagger())
+  .use(swagger({
+    documentation: {
+      info: {
+        title: "To do list",
+        version: "0.1",
+      },
+      tags: [
+        { name: "User", description: "User endpoints." },
+        { name: "Task", description: "Task endpoints." },
+      ]
+    },
+  }))
   .use(user)
   .use(task);
 

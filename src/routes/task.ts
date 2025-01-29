@@ -16,7 +16,7 @@ export const task = new Elysia()
         schema,
     })
   )
-  .get('/task', async ({ jwt, set, cookie: { auth } }) => {
+  .get("/task", async ({ jwt, set, cookie: { auth } }) => {
     const user = await jwt.verify(auth.value);
 
     if (user) {
@@ -31,13 +31,17 @@ export const task = new Elysia()
       if (allTasks) {
         return allTasks;
       } else {
-        set.status = 'Internal Server Error';
+        set.status = "Internal Server Error";
       };
     } else {
-      set.status = 'Unauthorized';
+      set.status = "Unauthorized";
     };
+  }, {
+    detail: {
+      tags: ["Task"]
+    },
   })
-  .post('/task', async ({ body, jwt, set, cookie: { auth } }) => {
+  .post("/task", async ({ body, jwt, set, cookie: { auth } }) => {
     const user = await jwt.verify(auth.value);
 
     if (user) {
@@ -52,15 +56,18 @@ export const task = new Elysia()
       });
 
       if (taskCreated) {
-        set.status = 'OK';
+        set.status = "OK";
       } else {
-        set.status = 'Internal Server Error';
+        set.status = "Internal Server Error";
       };
     } else {
-      set.status = 'Unauthorized';
+      set.status = "Unauthorized";
     };
   }, {
     body: t.Object({
       content: t.String(),
     }),
+    detail: {
+      tags: ["Task"]
+    },
   });

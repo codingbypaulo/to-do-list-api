@@ -42,7 +42,7 @@ export const user = new Elysia()
           value: await jwt.sign({ id }),
           httpOnly: true,
           maxAge: 7 * 86400,
-          path: '/',
+          path: "/",
         })
 
         set.status = "OK";
@@ -57,6 +57,9 @@ export const user = new Elysia()
       email: t.String({ format: "email", }),
       password: t.String({ minLength: 8, }),
     }),
+    detail: {
+      tags: ["User"]
+    },
   })
   .post("/user/login", async ({ body, jwt, cookie: { auth }, set }) => {
     const { email, password } = body;
@@ -77,7 +80,7 @@ export const user = new Elysia()
           value: await jwt.sign({ id }),
           httpOnly: true,
           maxAge: 7 * 86400,
-          path: '/',
+          path: "/",
         })
 
         set.status = "OK";
@@ -92,4 +95,7 @@ export const user = new Elysia()
       email: t.String({ format: "email", }),
       password: t.String({ minLength: 8, }),
     }),
+    detail: {
+      tags: ["User"]
+    },
   });

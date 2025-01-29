@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const schema = t.Object({
-  sub: t.String(),
+  id: t.String(),
 });
 
 export const user = new Elysia()
@@ -39,7 +39,7 @@ export const user = new Elysia()
         const { id } = userCreated;
 
         auth.set({
-          value: await jwt.sign({ sub: id }),
+          value: await jwt.sign({ id }),
           httpOnly: true,
           maxAge: 7 * 86400,
           path: '/',
@@ -74,7 +74,7 @@ export const user = new Elysia()
 
       if (passwordIsMatch) {
         auth.set({
-          value: await jwt.sign({ sub: id }),
+          value: await jwt.sign({ id }),
           httpOnly: true,
           maxAge: 7 * 86400,
           path: '/',
